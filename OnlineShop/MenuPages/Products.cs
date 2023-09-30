@@ -81,8 +81,9 @@ namespace OnlineShop.MenuPages
 
                 var selectedProduct = ReturnProducts(products, productSelected);
                 Output.WriteLine($"You selected: {selectedProduct.Name}");
-
+                Console.Write("\n##############################################\n");
                 Console.Write("Please select the quantity of product:");
+               
                 int selectQuantity = Convert.ToInt32(Console.ReadLine());
 
                 selectedProduct.Quantity = selectQuantity;

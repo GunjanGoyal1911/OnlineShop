@@ -40,7 +40,7 @@
 
         public override string ToString() 
         {
-            return $"Product Id : {Id} | Product name : {Name} | Product price : {Price} | Product quantity : {Quantity}";
+            return $"Product Id : {Id} | Product name : {Name} | Product price : {Price} | Product quantity : {Quantity}" ;
         }
     }
 }
