@@ -37,5 +37,10 @@
             get { return _quantity; }
             set { _quantity = value; }
         }
+
+        public override string ToString() 
+        {
+            return $"Product Id : {Id} | Product name : {Name} | Product price : {Price} | Product quantity : {Quantity}";
+        }
     }
 }

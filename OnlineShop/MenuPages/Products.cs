@@ -88,6 +88,7 @@ namespace OnlineShop.MenuPages
                 selectedProduct.Quantity = selectQuantity;
                 var finalCostOfProduct = selectQuantity * selectedProduct.Price;
                 displayFinalCost += finalCostOfProduct;
+                Output.WriteLine($"You have selected {selectedProduct.ToString()}");
                 Output.WriteLine($"Total amount of {selectedProduct.Name} is {finalCostOfProduct} kr");
      
                 string yesOrNo = Input.ReadString("Do you want to shop more product write 'yes' or 'no' :");

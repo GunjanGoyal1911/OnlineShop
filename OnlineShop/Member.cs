@@ -1,21 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineShop
+﻿namespace OnlineShop
 {
     public class Member : Customer
-    {
-        //public enum MembershipLevel
-        //{
-        //    Gold = 85,
-        //    Silver = 90,
-        //    Bronze = 95,
-        //    None = 0,
-        //}
-
+    {        
         public enum MembershipLevel
         {
             Gold,
