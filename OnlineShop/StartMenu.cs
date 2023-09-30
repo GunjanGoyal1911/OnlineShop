@@ -16,6 +16,7 @@ namespace OnlineShop
             AddPage(new WelcomeToShop(this));
             AddPage(new Products(this));
             AddPage(new CustomerCart(this));
+            AddPage(new Checkout(this));
             SetPage<MainMenu>();
         }
     }

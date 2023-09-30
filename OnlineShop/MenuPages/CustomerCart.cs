@@ -20,7 +20,7 @@ namespace OnlineShop.MenuPages
 
         public override void Display()
         {
-            var loginUser = GetLoginCustomer();
+            var loginUser = GetLoginMember();
             var carts = GetCarts();
             var cartToDisplay = CartForDisplay(loginUser, carts);
             var table = new TablePrinter("Id", "Name", "Price", "Quantity", "Total");
@@ -60,14 +60,14 @@ namespace OnlineShop.MenuPages
             return new Cart();
         }
 
-        public Customer GetLoginCustomer()
+        public Member GetLoginMember()
         {
             string existedUsers = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\loginUser.json");
             string JSON = File.ReadAllText(existedUsers).Trim();
 
             if (string.IsNullOrWhiteSpace(JSON.Trim())) return null;
 
-            var users = JsonSerializer.Deserialize<Customer>(JSON);
+            var users = JsonSerializer.Deserialize<Member>(JSON);
             return users;
         }
 

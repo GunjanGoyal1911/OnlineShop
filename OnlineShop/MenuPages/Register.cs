@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -25,21 +26,20 @@ namespace OnlineShop.MenuPages
            
             Console.WriteLine("Enter your password:");
             string password = Console.ReadLine();
-
-            //Customer customer = new Customer(name, password);
-            Console.WriteLine("Enter your membership points:");
+           
+            //Console.WriteLine("Enter your membership points:");
             string membershipPoints = Input.ReadString("Enter your membership points:");
             int points = Convert.ToInt32(membershipPoints);
             var level = DecideMembershipLevel(points);
 
 
-            Member customer = new Member(name, password, level);              
+            Member member = new Member(name, password, level);              
 
-            var customers = GetCustomers();
-            customers.Add(customer);
-            Console.WriteLine($"{customer.Name} has registered successfully\n");
+            var members = GetMembers();
+            members.Add(member);
+            Console.WriteLine($"{member.Name} has registered successfully\n");
             
-            string json = JsonSerializer.Serialize(customers, new JsonSerializerOptions
+            string json = JsonSerializer.Serialize(members, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 IncludeFields = true
@@ -52,28 +52,28 @@ namespace OnlineShop.MenuPages
          
         }
 
-        private MembershipLevel DecideMembershipLevel(int points)
+        private string DecideMembershipLevel(int points)
         {
            
             if(points > 50 || points < 100)
-            {
-                return MembershipLevel.Bronze;
+            {               
+                return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Bronze);
             }
-            else if (points > 50 || points < 100)
+            else if (points > 100 || points < 200)
             {
-                return MembershipLevel.Bronze;
+                return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Silver);
             }
-            else if (points > 50 || points < 100)
+            else if (points > 200 || points < 300)
             {
-                return MembershipLevel.Bronze;
+                return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Gold);
             }
             else
             {
-                return MembershipLevel.None;
-            }
+                return string.Empty;
+            }            
         }
 
-        static List<Member> GetCustomers()
+        static List<Member> GetMembers()
         {
             string existedUsers = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
 
@@ -81,8 +81,8 @@ namespace OnlineShop.MenuPages
 
             if (string.IsNullOrWhiteSpace(JSON.Trim())) return new List<Member>();
 
-            List<Member> users = JsonSerializer.Deserialize<List<Member>>(JSON);
-            return users;
+            var members = JsonSerializer.Deserialize<List<Member>>(JSON);
+            return members;
         }
     }
 }

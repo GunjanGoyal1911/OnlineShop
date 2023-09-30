@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -56,10 +57,16 @@ namespace OnlineShop.MenuPages
             //}
             //var cart = new Cart(products);
 
+            //Console.Write("Please write 4 to go back : ");
+            //int goBack = Convert.ToInt32(Console.ReadLine());
 
-
-            Input.ReadString("Press [Enter] to navigate home");
-            Program.NavigateHome();
+            //if(goBack == 4)
+            //{
+            Input.ReadString("Press [Enter] to shop");
+            Program.NavigateTo<WelcomeToShop>();
+            //}           
+            //Input.ReadString("Press [Enter] to navigate home");
+            //Program.NavigateHome();
         }
 
         static Cart ShoopingLoop(List<Items> products)
@@ -81,7 +88,8 @@ namespace OnlineShop.MenuPages
                 selectedProduct.Quantity = selectQuantity;
                 var finalCostOfProduct = selectQuantity * selectedProduct.Price;
                 displayFinalCost += finalCostOfProduct;
-                Output.WriteLine($"Cost have to pay for {selectedProduct.Name} is {finalCostOfProduct}");
+                Output.WriteLine($"Total amount of {selectedProduct.Name} is {finalCostOfProduct} kr");
+     
                 string yesOrNo = Input.ReadString("Do you want to shop more product write 'yes' or 'no' :");
 
                 if (yesOrNo.Equals("yes"))
@@ -95,9 +103,24 @@ namespace OnlineShop.MenuPages
                 }
                 purchasedProducts.Add(selectedProduct);               
             }
-            Output.WriteLine($"Your total cost is : | {displayFinalCost} |");
+            Output.WriteLine($"Your total cost is : | {displayFinalCost} Kr " +
+                $"| or in dollars {ConvertToDollar(displayFinalCost)} " +
+                $"| or in euros {ConvertToEuro(displayFinalCost)}");
+
             cart.AddProducts(purchasedProducts);
             return cart;
+        }
+
+        static double ConvertToDollar(int amount)
+        {
+            double exchangeRateSEKToUSD = 0.11;
+            return exchangeRateSEKToUSD * amount;
+        }
+
+        static double ConvertToEuro(int amount)
+        {
+            double exchangeRateSEKToEuro = 0.094;
+            return exchangeRateSEKToEuro * amount;
         }
 
         static Items ReturnProducts(List<Items> products, string productId)

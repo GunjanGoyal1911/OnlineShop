@@ -13,7 +13,7 @@ namespace OnlineShop.MenuPages
             : base($"Welcome", program,
                    new Option("Products", () => program.NavigateTo<Products>()),
                   new Option("Cart", () => program.NavigateTo<CustomerCart>()),
-                  new Option("Check out", () => program.NavigateTo<Chaeckout>()))
+                  new Option("Check out", () => program.NavigateTo<Checkout>()))
         {
 
         }

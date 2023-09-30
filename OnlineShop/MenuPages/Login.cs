@@ -18,8 +18,8 @@ namespace OnlineShop.MenuPages
 
         public override void Display()
         {
-            var customers = GetCustomer();
-            if(customers == null) 
+            var members = GetMembers();
+            if(members == null) 
             { 
                 Console.WriteLine("No customer found please start with registration");
             }
@@ -30,22 +30,22 @@ namespace OnlineShop.MenuPages
                 Console.WriteLine("Enter your password:");
                 string password = Console.ReadLine();
 
-                foreach (Customer customer in customers)
+                foreach (var member in members)
                 {
-                    if (customer.Name == Name && customer.Password == password)
+                    if (member.Name == Name && member.Password == password)
                     {
                         Console.WriteLine("Login successfull");
-                        AddLoginCustomerInDb(customer);
+                        AddLoginCustomerInDb(member);
                         Program.NavigateTo<WelcomeToShop>();
                         break;
                     }
-                    else if (customer.Name == Name && customer.Password != password)
+                    else if (member.Name == Name && member.Password != password)
                     {
                         Console.WriteLine("Password is incorrect. Please try again!");
                         Display();
                         break;
                     }
-                    else if (customer.Name != Name)
+                    else if (member.Name != Name)
                     {
                         Console.WriteLine("Customer does not exist and please register first");
                         //Registration();
@@ -58,9 +58,9 @@ namespace OnlineShop.MenuPages
             Program.NavigateHome();
         }
 
-        private void AddLoginCustomerInDb(Customer customer)
+        private void AddLoginCustomerInDb(Member memeber)
         {
-            string json = JsonSerializer.Serialize(customer, new JsonSerializerOptions
+            string json = JsonSerializer.Serialize(memeber, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 IncludeFields = true
@@ -74,7 +74,7 @@ namespace OnlineShop.MenuPages
         }
 
 
-        static List<Member> GetMember()
+        static List<Member> GetMembers()
         {
             string existedUsers = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
             string JSON = File.ReadAllText(existedUsers).Trim();
