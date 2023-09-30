@@ -38,7 +38,7 @@ namespace OnlineShop.MenuPages
             var members = GetMembers();
             members.Add(member);
             Console.WriteLine($"{member.Name} has registered successfully\n");
-            
+          
             string json = JsonSerializer.Serialize(members, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
@@ -49,7 +49,9 @@ namespace OnlineShop.MenuPages
 
 
             File.WriteAllText(path, json);
-         
+
+            Input.ReadString("Press [Enter] to navigate home");
+            Program.NavigateHome();
         }
 
         private string DecideMembershipLevel(int points)
