@@ -32,8 +32,7 @@ namespace OnlineShop.MenuPages
         }
 
         public void ShoopingLoop(List<Product> products)
-        {
-            //var cart = new Cart();
+        {          
             var loginUser = GetLoginCustomer();
             var members = GetMembers();
             var purchasedProducts = new List<Product>();
@@ -92,8 +91,7 @@ namespace OnlineShop.MenuPages
                         member.Cart = purchasedProducts;
                     }
                 }
-            }
-            //members.Add(memberWithCart);
+            }          
             UpdateCustomer(members);
         }
 
@@ -132,40 +130,8 @@ namespace OnlineShop.MenuPages
             return products;
         }
 
-        //public void AddProducts(List<Product> products)
-        //{                      
-        //    UpdateCart(products);
-        //    return;                
-        //}
-
         public void UpdateCustomer(List<Member> members)
         {
-            //Cart carts = new Cart();
-            //var member = new Member();
-            //var cart = new Cart();
-            //var carts = GetCarts();
-
-            //var members = GetMembers();
-            //////carts.Products.Add(item);
-            ////var loginUser = GetLoginCustomer();
-
-            ////if (carts.Count > 0)
-            ////{
-
-            //foreach (var member in members)
-            //{
-
-            //    if (member.Name == loginMember.Name)
-            //    {
-            //        member.Cart = loginMember.Cart;
-            //        break;
-            //    }
-            //    else
-            //    {
-            //        members.Add(loginMember);
-            //        break;
-            //    }
-            //} 
 
             string json = JsonSerializer.Serialize(members, new JsonSerializerOptions
             {
@@ -173,67 +139,9 @@ namespace OnlineShop.MenuPages
                 IncludeFields = true
             });
 
-
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
             File.WriteAllText(path, json);
         }
-
-
-        //public void UpdateCart(List<Product> selectedItems)
-        //{
-        //    //Cart carts = new Cart();
-        //    var member = new Member();
-        //    var cart = new Cart();
-        //    var carts = GetCarts();
-
-
-        //    //carts.Products.Add(item);
-        //    var loginUser = GetLoginCustomer();
-
-        //    if (carts.Count > 0)
-        //    {
-
-        //        foreach (var item in carts)
-        //        {
-
-        //            if (item.Owner.Name == loginUser.Name)
-        //            {
-        //                foreach (var selectedItem in selectedItems)
-        //                {
-        //                    item.Products.Add(selectedItem);
-        //                }
-        //                break;
-
-        //            }
-        //            else
-        //            {
-        //                cart.Owner = loginUser;
-        //                cart.Products = selectedItems;
-        //                carts.Add(cart);
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-
-        //        cart.Owner = loginUser;
-        //        cart.Products = selectedItems;
-        //        carts.Add(cart);
-        //    }
-
-
-
-        //    string json = JsonSerializer.Serialize(carts, new JsonSerializerOptions
-        //    {
-        //        PropertyNameCaseInsensitive = true,
-        //        IncludeFields = true
-        //    });
-
-
-        //    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\cart.json");
-        //    File.WriteAllText(path, json);
-        //}
 
         public Member GetLoginCustomer()
         {

@@ -24,11 +24,9 @@ namespace OnlineShop.MenuPages
             Console.WriteLine("Enter your password:");
             string password = Console.ReadLine();
            
-            //Console.WriteLine("Enter your membership points:");
             string membershipPoints = Input.ReadString("Enter your membership points:");
             int points = Convert.ToInt32(membershipPoints);
             var level = DecideMembershipLevel(points);
-
 
             Member member = new Member(name, password, level);              
 
@@ -44,7 +42,6 @@ namespace OnlineShop.MenuPages
             
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
 
-
             File.WriteAllText(path, json);
 
             Input.ReadString("Press [Enter] to navigate home");
@@ -52,8 +49,7 @@ namespace OnlineShop.MenuPages
         }
 
         private string DecideMembershipLevel(int points)
-        {
-           
+        {           
             if(points > 50 && points < 100)
             {               
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Bronze);
@@ -72,7 +68,7 @@ namespace OnlineShop.MenuPages
             }            
         }
 
-        static List<Member> GetMembers()
+        public List<Member> GetMembers()
         {
             string existedUsers = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
 

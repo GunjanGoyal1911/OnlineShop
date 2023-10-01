@@ -49,7 +49,6 @@ namespace OnlineShop.Pages
                         Console.WriteLine("Customer does not exist and please register first");
                         
                     }
-
                 }
             }          
 
@@ -65,9 +64,7 @@ namespace OnlineShop.Pages
                 IncludeFields = true
             });
 
-
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\loginUser.json");
-
 
             File.WriteAllText(path, json);
         }

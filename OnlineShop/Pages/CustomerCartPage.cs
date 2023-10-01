@@ -19,8 +19,7 @@ namespace OnlineShop.Pages
         public override void Display()
         {
             var loginUser = GetLoginMember();
-            var members = GetMembers();
-            //var carts = GetCarts();
+            var members = GetMembers();          
             var cartForDisplay = CartForDisplay(loginUser, members);
            
             var table = new TablePrinter("Id", "Name", "Price", "Quantity", "Total");
@@ -51,7 +50,6 @@ namespace OnlineShop.Pages
             
             Input.ReadString("Press [Enter] to shop");
             Program.NavigateTo<WelcomeToShopMenuPage>();
-
         }
 
         private int GetFinalAmount(List<Product> products)
@@ -101,16 +99,5 @@ namespace OnlineShop.Pages
             var members = JsonSerializer.Deserialize<List<Member>>(JSON);
             return members;
         }
-
-        //public List<Cart> GetCarts()
-        //{
-        //    string existedCartItems = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\cart.json");
-        //    string JSON = File.ReadAllText(existedCartItems).Trim();
-
-        //    if (string.IsNullOrWhiteSpace(JSON.Trim())) return new List<Cart>();
-
-        //    var carts = JsonSerializer.Deserialize<List<Cart>>(JSON);
-        //    return carts;
-        //}
     }
 }
