@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using EasyConsole;
-using static OnlineShop.Member;
+using OnlineShop.Entities;
+using static OnlineShop.Entities.Member;
 
 namespace OnlineShop.MenuPages
 {
-    class Register : Page
+    class RegisterPage : Page
     {
-       public Register(EasyConsole.Program program)
+       public RegisterPage(EasyConsole.Program program)
             : base("Register", program)
         {
 
@@ -57,15 +54,15 @@ namespace OnlineShop.MenuPages
         private string DecideMembershipLevel(int points)
         {
            
-            if(points > 50 || points < 100)
+            if(points > 50 && points < 100)
             {               
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Bronze);
             }
-            else if (points > 100 || points < 200)
+            else if (points > 100 && points < 200)
             {
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Silver);
             }
-            else if (points > 200 || points < 300)
+            else if (points > 200 && points < 300)
             {
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Gold);
             }

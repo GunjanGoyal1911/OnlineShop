@@ -1,4 +1,4 @@
-﻿namespace OnlineShop
+﻿namespace OnlineShop.Entities
 {
     public class Member : Customer
     {        
@@ -7,15 +7,17 @@
             Gold,
             Silver,
             Bronze,
-            None,
+            None
         }
+
+        private string _level;
 
         public Member(string name, string password, string level) : base(name, password)
         {
             Level = level;
         }
 
-        private string _level;
+        
         public string Level
         {
             get { return _level; }

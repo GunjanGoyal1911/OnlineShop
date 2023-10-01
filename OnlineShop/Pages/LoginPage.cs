@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using EasyConsole;
+using OnlineShop.Entities;
+using OnlineShop.MenuPages;
 
-namespace OnlineShop.MenuPages
+namespace OnlineShop.Pages
 {
-    public class Login : Page
+    public class LoginPage : Page
     {
-        public Login(EasyConsole.Program program) 
+        public LoginPage(EasyConsole.Program program) 
             : base("Login", program)
         {
-        }
+        }     
 
         public override void Display()
         {
@@ -36,7 +35,7 @@ namespace OnlineShop.MenuPages
                     {
                         Console.WriteLine("Login successfull");
                         AddLoginCustomerInDb(member);
-                        Program.NavigateTo<WelcomeToShop>();
+                        Program.NavigateTo<WelcomeToShopMenuPage>();
                         break;
                     }
                     else if (member.Name == Name && member.Password != password)
@@ -48,7 +47,7 @@ namespace OnlineShop.MenuPages
                     else if (member.Name != Name)
                     {
                         Console.WriteLine("Customer does not exist and please register first");
-                        //Registration();
+                        
                     }
 
                 }
@@ -74,7 +73,7 @@ namespace OnlineShop.MenuPages
         }
 
 
-        static List<Member> GetMembers()
+        public List<Member> GetMembers()
         {
             string existedUsers = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "\\Data\\users.json");
             string JSON = File.ReadAllText(existedUsers).Trim();

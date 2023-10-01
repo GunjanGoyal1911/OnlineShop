@@ -74,19 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart.cs" />
-    <Compile Include="Chaeckout.cs" />
-    <Compile Include="Customer.cs" />
-    <Compile Include="Items.cs" />
-    <Compile Include="Member.cs" />
-    <Compile Include="MenuPages\CustomerCart.cs" />
-    <Compile Include="MenuPages\WelcomeToShop.cs" />
+    <Compile Include="Pages\CheckoutPage.cs" />
+    <Compile Include="Entitites\Customer.cs" />
+    <Compile Include="Entitites\Product.cs" />
+    <Compile Include="Entitites\Member.cs" />
+    <Compile Include="Pages\CustomerCartPage.cs" />
+    <Compile Include="MenuPages\WelcomeToShopMenuPage.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="MenuPages\Exit.cs" />
-    <Compile Include="MenuPages\Login.cs" />
-    <Compile Include="MenuPages\MainMenu.cs" />
-    <Compile Include="MenuPages\Register.cs" />
-    <Compile Include="MenuPages\Products.cs" />
+    <Compile Include="Pages\ExitPage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="MenuPages\MainMenuPage.cs" />
+    <Compile Include="Pages\RegisterPage.cs" />
+    <Compile Include="Pages\ProductPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartMenu.cs" />
     <Compile Include="Util\TablePrinter.cs" />

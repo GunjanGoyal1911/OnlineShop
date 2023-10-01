@@ -1,12 +1,12 @@
-﻿namespace OnlineShop
+﻿namespace OnlineShop.Entities
 {
-    public class Items
+    public class Product
     {
         private int _id;
         private string _name;
         private int _price;
         private int _quantity;
-        public Items(int id, string name, int price, int quantity)
+        public Product(int id, string name, int price, int quantity)
         {
             Id = id;
             Name = name;

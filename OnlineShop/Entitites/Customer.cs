@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using OnlineShop.MenuPages;
 
-namespace OnlineShop
+namespace OnlineShop.Entities
 {
     public class Customer
     {
         private string _name;
         private string _password;
-       
+        private List<Product> _cart;
+
         public Customer(string name, string password)
         {
             Name = name;
@@ -17,14 +18,19 @@ namespace OnlineShop
         public string Name
         {
             get { return _name; }
-            private set { _name = value; }
+            set { _name = value; }
         }
 
         public string Password
         {
             get { return _password; }
-            private set { _password = value; }
-        }      
+            set { _password = value; }
+        }
 
+        public List<Product> Cart 
+        {
+            get { return _cart; }
+            set { _cart = value; }
+        }
     }
 }

@@ -1,6 +1,5 @@
-﻿using System;
-using EasyConsole;
-using OnlineShop.MenuPages;
+﻿using OnlineShop.MenuPages;
+using OnlineShop.Pages;
 
 namespace OnlineShop
 {
@@ -9,15 +8,15 @@ namespace OnlineShop
         public StartMenu() 
             : base("Online Shop", breadcrumbHeader : true)
         {
-            AddPage(new MainMenu(this));
-            AddPage(new Login(this));
-            AddPage(new Register(this));
-            AddPage(new Exit(this));
-            AddPage(new WelcomeToShop(this));
-            AddPage(new Products(this));
-            AddPage(new CustomerCart(this));
-            AddPage(new Checkout(this));
-            SetPage<MainMenu>();
+            AddPage(new MainMenuPage(this));
+            AddPage(new LoginPage(this));
+            AddPage(new RegisterPage(this));
+            AddPage(new ExitPage(this));
+            AddPage(new WelcomeToShopMenuPage(this));
+            AddPage(new ProductPage(this));
+            AddPage(new CustomerCartPage(this));
+            AddPage(new CheckoutPage(this));
+            SetPage<MainMenuPage>();
         }
     }
 }

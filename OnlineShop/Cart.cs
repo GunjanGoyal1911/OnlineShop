@@ -11,8 +11,8 @@ namespace OnlineShop
 {
     public class Cart
     {
-        public Customer Owner { get; set; }
-        public List<Items> Products { get; set; }
+        //public Customer Owner { get; set; }
+        //public List<Items> Products { get; set; }
 
         //public Cart(List<Items> products = null)
         //{          
