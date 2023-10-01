@@ -26,10 +26,9 @@ namespace OnlineShop.Pages
 
             foreach (var member in members)
             {
-
                 if (member.Name == loginUser.Name)
                 {
-                   if(member.Cart.Count == 0)
+                   if(member.Cart == null || member.Cart.Count == 0)
                     {
                         Output.WriteLine("Cart is empty. Please select the product.");
                     }

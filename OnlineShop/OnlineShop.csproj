@@ -98,9 +98,6 @@
     <Content Include="Data\products.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\cart.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Data\loginUser.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

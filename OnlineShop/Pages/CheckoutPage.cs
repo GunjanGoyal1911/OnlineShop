@@ -21,7 +21,7 @@ namespace OnlineShop.Pages
 
             var cartForDisplay = MemberCart(loginUser, members);
             var finalAmount = CalculateFinalAmount(cartForDisplay, loginUser);
-            if (cartForDisplay.Count > 0)
+            if (cartForDisplay?.Count > 0)
             {
                 ClearCartForUser(loginUser, members);
                 Console.WriteLine($"Final amount  after discount is |{finalAmount}kr| Thank you\n");
@@ -61,8 +61,8 @@ namespace OnlineShop.Pages
         }
 
         private double CalculateFinalAmount(List<Product>products, Member member)
-        {
-            if(products.Count >0)
+        {            
+            if(products?.Count >0)
             {
                 double finalAmount = 0;
                 double discount = 0;

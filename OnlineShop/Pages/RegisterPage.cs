@@ -50,15 +50,15 @@ namespace OnlineShop.MenuPages
 
         private string DecideMembershipLevel(int points)
         {           
-            if(points > 50 && points < 100)
+            if(points > 100 && points < 500)
             {               
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Bronze);
             }
-            else if (points > 100 && points < 200)
+            else if (points > 500 && points < 1000)
             {
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Silver);
             }
-            else if (points > 200 && points < 300)
+            else if (points > 1000 && points < 1500)
             {
                 return Enum.GetName(typeof(MembershipLevel), MembershipLevel.Gold);
             }
