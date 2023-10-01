@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using EasyConsole;
 using OnlineShop.Entities;
@@ -25,31 +26,33 @@ namespace OnlineShop.Pages
             else
             {
                 Console.WriteLine("Enter your username:");
-                string Name = Console.ReadLine();
+                string name = Console.ReadLine();
                 Console.WriteLine("Enter your password:");
                 string password = Console.ReadLine();
 
-                foreach (var member in members)
+               
+               if(members.Any(mem => mem.Name == name && mem.Password != password))
                 {
-                    if (member.Name == Name && member.Password == password)
-                    {
-                        Console.WriteLine("Login successfull");
-                        AddLoginCustomerInDb(member);
-                        Program.NavigateTo<WelcomeToShopMenuPage>();
-                        break;
-                    }
-                    else if (member.Name == Name && member.Password != password)
-                    {
-                        Console.WriteLine("Password is incorrect. Please try again!");
-                        Display();
-                        break;
-                    }
-                    else if (member.Name != Name)
-                    {
-                        Console.WriteLine("Customer does not exist and please register first");
-                        
-                    }
+                    Console.WriteLine("Password is incorrect. Please try again!");
+                    Display();
                 }
+                else if (!members.Any(mem => mem.Name == name && mem.Password == password))
+                {
+                    Console.WriteLine("Customer does not exist and please register first");
+                }
+                else
+                {
+                    foreach (var member in members)
+                    {
+                        if (member.Name == name && member.Password == password)
+                        {
+                            Console.WriteLine("Login successfull");
+                            AddLoginCustomerInDb(member);
+                            Program.NavigateTo<WelcomeToShopMenuPage>();
+                            break;
+                        }                       
+                    }
+                }               
             }          
 
             Input.ReadString("Press [Enter] to navigate home");
