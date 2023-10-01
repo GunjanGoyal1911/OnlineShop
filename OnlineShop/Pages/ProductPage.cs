@@ -9,26 +9,26 @@ using OnlineShop.Entities;
 namespace OnlineShop.MenuPages
 {
     class ProductPage : Page
-    {      
+    {
 
-        public ProductPage(EasyConsole.Program program) 
+        public ProductPage(EasyConsole.Program program)
             : base("Select Products", program)
         {
 
-        }   
+        }
 
         public override void Display()
         {
             base.Display();
             var products = GetProducts();
             foreach (var product in products)
-            {                
+            {
                 Output.WriteLine($"{product.Id}. {product.Name} {product.Price}kr");
             }
             ShoopingLoop(products);
-           
+
             Input.ReadString("Press [Enter] to shop");
-            Program.NavigateTo<WelcomeToShopMenuPage>();            
+            Program.NavigateTo<WelcomeToShopMenuPage>();
         }
 
         public void ShoopingLoop(List<Product> products)
@@ -39,7 +39,7 @@ namespace OnlineShop.MenuPages
             var purchasedProducts = new List<Product>();
             bool isRun = true;
             int displayFinalCost = 0;
-          
+
             while (isRun)
             {
                 string productSelected = Input.ReadString("Please select an option:");
@@ -48,7 +48,7 @@ namespace OnlineShop.MenuPages
                 Console.WriteLine($"You selected: {selectedProduct.Name}");
                 Console.Write("\n##############################################\n");
                 Console.Write("Please select the quantity of product:");
-               
+
                 int selectQuantity = Convert.ToInt32(Console.ReadLine());
 
                 selectedProduct.Quantity = selectQuantity;
@@ -56,7 +56,7 @@ namespace OnlineShop.MenuPages
                 displayFinalCost += finalCostOfProduct;
                 Output.WriteLine($"You have selected {selectedProduct.ToString()}");
                 Output.WriteLine($"Total amount of {selectedProduct.Name} is {finalCostOfProduct} kr");
-     
+
                 string yesOrNo = Input.ReadString("Do you want to shop more product write 'yes' or 'no' :");
 
                 if (yesOrNo.Equals("yes"))
@@ -68,25 +68,32 @@ namespace OnlineShop.MenuPages
                 {
                     isRun = false;
                 }
-                purchasedProducts.Add(selectedProduct);               
+                purchasedProducts.Add(selectedProduct);
             }
             Output.WriteLine($"Your total cost is : | {displayFinalCost} Kr " +
                 $"| or {ConvertToDollar(displayFinalCost)} USD" +
                 $"| or {ConvertToEuro(displayFinalCost)} EUR");
 
-           var memberWithCart =  members.FirstOrDefault(user => user.Name == loginUser.Name && user.Password == loginUser.Password);
-            if (memberWithCart.Cart != null)
+            var memberWithCart = members.FirstOrDefault(user => user.Name == loginUser.Name && user.Password == loginUser.Password);            
+
+            foreach (var member in members)
             {
-                foreach (var purchasedProduct in purchasedProducts)
+                if(member.Name == memberWithCart.Name)
                 {
-                    memberWithCart.Cart.Add(purchasedProduct);
+                    if (memberWithCart.Cart != null)
+                    {
+                        foreach (var purchasedProduct in purchasedProducts)
+                        {
+                            member.Cart.Add(purchasedProduct);
+                        }
+                    }
+                    else
+                    {
+                        member.Cart = purchasedProducts;
+                    }
                 }
             }
-            else
-            {
-                memberWithCart.Cart = purchasedProducts;
-            }
-            members.Add(memberWithCart);    
+            //members.Add(memberWithCart);
             UpdateCustomer(members);
         }
 
